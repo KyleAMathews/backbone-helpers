@@ -1,4 +1,4 @@
 backbone-helpers
 ================
 
-Extensions to Backbone.js or otherwise generally useful code.
+Extensions to Backbone.js or generally useful code for Backbone projects.
