@@ -10,7 +10,7 @@ BindTo =
   # easily, at a later point in time.
   bindTo: (obj, eventName, callback, context) ->
     context = context || @
-    obj.bind(eventName, callback, context)
+    obj.on(eventName, callback, context)
 
     if !@bindings then @bindings = []
 
@@ -24,7 +24,7 @@ BindTo =
   # Unbind all of the events that we have stored.
   unbindAll: ->
     _.each(@bindings, (binding) ->
-      binding.obj.unbind(binding.eventName, binding.callback)
+      binding.obj.off(null, null, binding.context)
     )
 
     this.bindings = []
