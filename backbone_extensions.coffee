@@ -39,13 +39,17 @@ Backbone.View.prototype.close = ->
   @unbind()
   @unbindAll()
   @remove()
+  @closeChildrenViews()
+  if @onClose then @onClose()
 
+# Close children views. Also useful for cleaning up long-living views which creates
+# lots of children views.
+Backbone.View.prototype.closeChildrenViews = ->
   if @children
     _.each @children, (childView) ->
       if childView.close?
         childView.close()
-
-  if @onClose then @onClose()
+    @children = []
 
 # Add addChildView method so we can keep track of children views so when closing the
 # parent view, it's easy to close each child view.
